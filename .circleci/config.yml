@@ -43,8 +43,8 @@ jobs:
     #   - run:
     #       name: install deps
     #       command: apt-get update -y; apt-get install git -y
-    #   - attach_workspace:
-    #       at: ~/RojakAmatyaPortfolio
+      - attach_workspace:
+          at: ~/RojakAmatyaPortfolio
     #   - run:
     #       name: git config
     #       command: git config --global user.email "codefever17@gmail.com" && git config --global user.name "Codefeak"
@@ -62,7 +62,7 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-        - build
-        - deploy:
-            requires:
-                - build
+        - deploy
+        # - deploy:
+        #     requires:
+        #         - build
