@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ~/RojakAmatyaPortfolio
+  working_directory: /workspace
   docker:
     - image: tailor/docker-libvips:node-8.6
 
@@ -22,7 +22,7 @@ jobs:
           command: npm run build
       - run:
           name: Firebase build
-          command: ./node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN
+          command: ./node_modules/.bin/firebase deploy
       - run:
           name: copy ci config
           command: cp -r .circleci/ ./public/.circleci/
@@ -38,36 +38,31 @@ jobs:
             - package.json
             - .git
   deploy:
-      <<: *defaults
-      steps:
-        - run:
-            name: install deps
-            command: apt-get update -y; apt-get install git -y
-        - attach_workspace:
-            at: /workspace
-        - run:
-            name: git config
-            command: git config --global user.email "deploy@circleci.com" && git config --global user.name "Circle CI"
-        - run:
-            name: ssh alias override key verification
-            command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
-        - run:
-            name: install gh-pages
-            command: npm i gh-pages
-        - run:
-            name: gh-pages deploy
-            command: npm run deploy
+    <<: *defaults
+    steps:
+      - run:
+          name: install deps
+          command: apt-get update -y; apt-get install git -y
+      - attach_workspace:
+          at: /workspace
+      - run:
+          name: git config
+          command: git config --global user.email "deploy@circleci.com" && git config --global user.name "Circle CI"
+      - run:
+          name: ssh alias override key verification
+          command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - run:
+          name: install gh-pages
+          command: npm i gh-pages
+      - run:
+          name: gh-pages deploy
+          command: npm run deploy
 
 workflows:
   version: 2
   build_and_deploy:
     jobs:
       - build:
-          filters:
-            branches:
       - deploy:
           requires:
             - build
-          filters:
-            branches:
-              only: source
