@@ -33,7 +33,7 @@ jobs:
         key: dependency-cache-{{ checksum "package.json" }}
     - run:
         name: firebase deploy
-        command: yarn firebase deploy --token "1/j5D_yaYR-AkNdLmslBXhKjmMDA_plZUhHsT_o2z1xDQ"
+        command: yarn firebase deploy --token "1/erc3Fm2vLwFOzSMkWATD2FyPVGwayjMnJIPmXuwBXT0"
 
 workflows:
   version: 2
