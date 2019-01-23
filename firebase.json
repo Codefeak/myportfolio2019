@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "RojakAmatyaPortfolio",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
