@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ~/RojakAmatyaPortfolio
+  working_directory: /RojakAmatyaPortfolio
   docker:
     - image: circleci/node:11.6.0
 
@@ -17,9 +17,9 @@ jobs:
       - run:
           name: npm install
           command: yarn
-    #   - run:
-    #       name: gatsby build
-    #       command: yarn build
+      - run:
+          name: gatsby build
+          command: yarn build
       - run:
           name: firebase build
           command: yarn firebase deploy --token "1/j5D_yaYR-AkNdLmslBXhKjmMDA_plZUhHsT_o2z1xDQ"
@@ -32,7 +32,7 @@ jobs:
             - node_modules
             - package-lock.json
       - persist_to_workspace:
-          root: ~/RojakAmatyaPortfolio
+          root: /RojakAmatyaPortfolio
           paths:
             - public
             - package.json
@@ -44,7 +44,7 @@ jobs:
     #       name: install deps
     #       command: apt-get update -y; apt-get install git -y
       - attach_workspace:
-          at: ~/RojakAmatyaPortfolio
+          at: /RojakAmatyaPortfolio
     #   - run:
     #       name: git config
     #       command: git config --global user.email "codefever17@gmail.com" && git config --global user.name "Codefeak"
