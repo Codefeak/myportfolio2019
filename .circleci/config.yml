@@ -17,29 +17,32 @@ jobs:
     - run:
         name: build
         command: yarn build
+    - run:
+        name: firebase deploy
+        command: yarn firebase deploy --token "1/g3pp_ojLPGkkjM4wHASzNmfl_ayueJeNS6Vrb0AegwRAposuL2_wXwFC-JbhFkwW" --project codefeak
     - save_cache:
         key: dependency-cache-{{ checksum "package.json" }}
         paths:
         - node_modules
    
-  deploy:
-    <<: *defaults
-    steps:
-    - checkout
-    - run:
-        name: npm install
-        command: yarn
-    - restore_cache:
-        key: dependency-cache-{{ checksum "package.json" }}
-    - run:
-        name: firebase deploy
-        command: yarn firebase deploy --token "1/g3pp_ojLPGkkjM4wHASzNmfl_ayueJeNS6Vrb0AegwRAposuL2_wXwFC-JbhFkwW" --project codefeak
+#   deploy:
+#     <<: *defaults
+#     steps:
+#     - checkout
+#     - run:
+#         name: npm install
+#         command: yarn
+#     - restore_cache:
+#         key: dependency-cache-{{ checksum "package.json" }}
+#     - run:
+#         name: firebase deploy
+#         command: yarn firebase deploy --token "1/g3pp_ojLPGkkjM4wHASzNmfl_ayueJeNS6Vrb0AegwRAposuL2_wXwFC-JbhFkwW" --project codefeak
 
 workflows:
   version: 2
   build_and_deploy:
     jobs:
         - build
-        - deploy:
-            requires:
-                - build
+        # - deploy:
+        #     requires:
+        #         - build
