@@ -22,7 +22,7 @@ jobs:
           command: yarn build
       - run:
           name: firebase build
-          command: yarn firebase deploy --token "$1/j5D_yaYR-AkNdLmslBXhKjmMDA_plZUhHsT_o2z1xDQ"
+          command: yarn firebase deploy --token "1/j5D_yaYR-AkNdLmslBXhKjmMDA_plZUhHsT_o2z1xDQ"
       - run:
           name: copy ci config
           command: cp -r .circleci/ ./public/.circleci/
