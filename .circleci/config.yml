@@ -21,8 +21,8 @@ jobs:
           name: gatsby build
           command: npm run build
       - run:
-          name: Firebase build
-          command: ./node_modules/.bin/firebase deploy
+          name: firebase build
+          command: npm run firebase deploy
       - run:
           name: copy ci config
           command: cp -r .circleci/ ./public/.circleci/
