@@ -2,20 +2,20 @@ defaults: &defaults
   working_directory: ~/RojakAmatyaPortfolio
   docker:
     - image: circleci/node:11.6.0
-      - checkout
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: npm install
-          command: yarn
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
+    
+    
 
 version: 2
 jobs:
   build:
     <<: *defaults
     steps:
+    - checkout
+      - run:
+          name: npm install
+          command: yarn
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: build
           command: yarn build
@@ -27,6 +27,12 @@ jobs:
   deploy:
     <<: *defaults
     steps:
+    - checkout
+      - run:
+          name: npm install
+          command: yarn
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: firebase deploy
           command: yarn firebase deploy --token "1/j5D_yaYR-AkNdLmslBXhKjmMDA_plZUhHsT_o2z1xDQ"
