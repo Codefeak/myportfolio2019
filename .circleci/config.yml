@@ -1,62 +1,35 @@
 defaults: &defaults
-  working_directory: /RojakAmatyaPortfolio
+  working_directory: ~/RojakAmatyaPortfolio
   docker:
     - image: circleci/node:11.6.0
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: npm install
+          command: yarn
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
 
 version: 2
 jobs:
   build:
     <<: *defaults
     steps:
-      - checkout
-    #   - run:
-    #       name: install deps
-    #       command: sudo pacman -U -y; sudo pacman git build-essential -y
-    #   - restore_cache:
-    #       key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: npm install
-          command: yarn
-      - run:
-          name: gatsby build
+          name: build
           command: yarn build
-      - run:
-          name: firebase build
-          command: yarn firebase deploy --token "1/j5D_yaYR-AkNdLmslBXhKjmMDA_plZUhHsT_o2z1xDQ"
-    #   - run:
-    #       name: copy ci config
-    #       command: cp -r .circleci/ ./public/.circleci/
       - save_cache:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-            - package-lock.json
-      - persist_to_workspace:
-          root: /RojakAmatyaPortfolio
-          paths:
-            - public
-            - package.json
-            - .git
+   
   deploy:
     <<: *defaults
     steps:
-    #   - run:
-    #       name: install deps
-    #       command: apt-get update -y; apt-get install git -y
-      - attach_workspace:
-          at: /RojakAmatyaPortfolio
-    #   - run:
-    #       name: git config
-    #       command: git config --global user.email "codefever17@gmail.com" && git config --global user.name "Codefeak"
-    #   - run:
-    #       name: ssh alias override key verification
-    #       command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
       - run:
-          name: install gh-pages
-          command: yarn add gh-pages
-      - run:
-          name: gh-pages deploy
-          command: yarn deploy
+          name: firebase deploy
+          command: yarn firebase deploy --token "1/j5D_yaYR-AkNdLmslBXhKjmMDA_plZUhHsT_o2z1xDQ"
 
 workflows:
   version: 2
