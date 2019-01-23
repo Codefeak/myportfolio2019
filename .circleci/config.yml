@@ -11,7 +11,7 @@ jobs:
       - checkout
     #   - run:
     #       name: install deps
-    #       command: apt-get update -y; apt-get install git build-essential -y
+    #       command: sudo pacman -U -y; sudo pacman git build-essential -y
     #   - restore_cache:
     #       key: dependency-cache-{{ checksum "package.json" }}
       - run:
