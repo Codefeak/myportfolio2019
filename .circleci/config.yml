@@ -17,9 +17,9 @@ jobs:
       - run:
           name: npm install
           command: yarn
-      - run:
-          name: gatsby build
-          command: yarn build
+    #   - run:
+    #       name: gatsby build
+    #       command: yarn build
       - run:
           name: firebase build
           command: yarn firebase deploy --token "1/j5D_yaYR-AkNdLmslBXhKjmMDA_plZUhHsT_o2z1xDQ"
