@@ -16,7 +16,7 @@ jobs:
         key: dependency-cache-{{ checksum "package.json" }}
     - run:
         name: build
-        command: yarn build
+        command: gatsby build
     - save_cache:
         key: dependency-cache-{{ checksum "package.json" }}
         paths:
@@ -33,7 +33,7 @@ jobs:
         key: dependency-cache-{{ checksum "package.json" }}
     - run:
         name: firebase deploy
-        command: yarn firebase deploy --token "1/marMCVrlOjwYRXSxlwwz4ik6ItSL3wpWzrmT7oWjxsk"
+        command: yarn firebase deploy --token "1/g3pp_ojLPGkkjM4wHASzNmfl_ayueJeNS6Vrb0AegwRAposuL2_wXwFC-JbhFkwW"
 
 workflows:
   version: 2
