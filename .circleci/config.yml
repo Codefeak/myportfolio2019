@@ -1,7 +1,7 @@
 defaults: &defaults
-  working_directory: /workspace
+  working_directory: /RojakAmatyaPortfolio
   docker:
-    - image: tailor/docker-libvips:node-8.6
+    - image: circleci/node:11.6.0
 
 version: 2
 jobs:
@@ -44,7 +44,7 @@ jobs:
           name: install deps
           command: apt-get update -y; apt-get install git -y
       - attach_workspace:
-          at: /workspace
+          at: /RojakAmatyaPortfolio
       - run:
           name: git config
           command: git config --global user.email "deploy@circleci.com" && git config --global user.name "Circle CI"
@@ -62,7 +62,6 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build:
       - deploy:
           requires:
             - build
