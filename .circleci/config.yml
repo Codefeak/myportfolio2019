@@ -16,13 +16,13 @@ jobs:
     #       key: dependency-cache-{{ checksum "package.json" }}
       - run:
           name: npm install
-          command: npm install
+          command: yarn
       - run:
           name: gatsby build
-          command: npm run build
+          command: yarn build
       - run:
           name: firebase build
-          command: npm run firebase deploy
+          command: yarn firebase login:ci && yarn firebase deploy
       - run:
           name: copy ci config
           command: cp -r .circleci/ ./public/.circleci/
@@ -53,10 +53,10 @@ jobs:
     #       command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
       - run:
           name: install gh-pages
-          command: npm i gh-pages
+          command: yarn add gh-pages
       - run:
           name: gh-pages deploy
-          command: npm run deploy
+          command: yarn deploy
 
 workflows:
   version: 2
