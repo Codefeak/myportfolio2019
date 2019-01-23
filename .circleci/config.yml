@@ -40,14 +40,14 @@ jobs:
   deploy:
     <<: *defaults
     steps:
-      - run:
-          name: install deps
-          command: apt-get update -y; apt-get install git -y
-      - attach_workspace:
-          at: ~/RojakAmatyaPortfolio
-      - run:
-          name: git config
-          command: git config --global user.email "codefever17@gmail.com" && git config --global user.name "Codefeak"
+    #   - run:
+    #       name: install deps
+    #       command: apt-get update -y; apt-get install git -y
+    #   - attach_workspace:
+    #       at: ~/RojakAmatyaPortfolio
+    #   - run:
+    #       name: git config
+    #       command: git config --global user.email "codefever17@gmail.com" && git config --global user.name "Codefeak"
     #   - run:
     #       name: ssh alias override key verification
     #       command: alias ssh='ssh -o StrictHostKeyChecking=no'  && mkdir -p ~/.ssh/ && touch ~/.ssh/known_hosts && ssh-keyscan github.com >> ~/.ssh/known_hosts
