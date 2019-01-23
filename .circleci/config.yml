@@ -32,7 +32,7 @@ jobs:
             - node_modules
             - package-lock.json
       - persist_to_workspace:
-          root: /workspace
+          root: ~/RojakAmatyaPortfolio
           paths:
             - public
             - package.json
