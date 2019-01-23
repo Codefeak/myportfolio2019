@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: /workspace
+  working_directory: ~/RojakAmatyaPortfolio
   docker:
     - image: tailor/docker-libvips:node-8.6
 
@@ -65,7 +65,6 @@ workflows:
       - build:
           filters:
             branches:
-              ignore: master
       - deploy:
           requires:
             - build
