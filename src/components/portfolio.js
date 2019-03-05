@@ -116,7 +116,6 @@ const TileContent = styled.a`
 const Item = ({excerpt, image, tags, slug, title, timeToRead}) => (
   <Tile>
     <a href={slug}>
-    {console.log(image)}
       {image ? (<Img sizes={image.childImageSharp.sizes} />) : (<div />)}
     </a>
     <TileContent href={slug}>

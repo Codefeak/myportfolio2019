@@ -238,7 +238,6 @@ class IndexPage extends React.Component {
         <Section center>
           <h4>Tech</h4>
           <span>Technologies I enjoy working with.</span>
-          {console.log(this.props)}
           <Showcase images={this.props.data.allImageSharp.edges} />
         </Section>
         <a id="education">Education</a>
