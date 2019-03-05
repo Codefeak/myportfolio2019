@@ -218,11 +218,6 @@ class IndexPage extends React.Component {
               </p>
             </Box>
             <Box px={2} width={180}>
-              <Img
-                sizes={
-                  this.props.data.allFile.edges[0].node.childImageSharp.sizes
-                }
-              />
             </Box>
           </Flex>
         </Section>
