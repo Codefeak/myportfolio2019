@@ -16,7 +16,7 @@ const Header = styled.div`
   & > div {
     padding-top: 120px;
     margin: auto;
-    max-width: 600px;
+    max-width: 960px;
   }
 `
 
