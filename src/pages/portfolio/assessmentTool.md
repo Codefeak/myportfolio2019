@@ -1,5 +1,5 @@
 ---
-title: "Integrify Assessment Tool"
+title: "Assessment Tool"
 date: "2018-09-13"
 tags: ["progressive web app", "react", "redux", "nodejs", "expressjs", "mongodb", "MERN" ]
 image: './images/assessmenttool.jpg'
